@@ -17,7 +17,7 @@ function renderView (baseBranch, headBranch) {
   const baseStyle = baseBranch === 'master' ? masterStyle : ''
   const template   = document.createElement('div')
   template.innerHTML = `
-    <div style="text-align: center; margin: 20px 0">
+    <div class="chrome-ext-pr ${baseBranch}-${headBranch}" style="text-align: center; margin: 20px 0">
       <strong style="${tagStyle} ${baseStyle}">${baseBranch}</strong>
       <i>←</i>
       <span style="${tagStyle}">${headBranch}</span>
@@ -37,6 +37,12 @@ function render(){
 
   const baseBranch = baseDOM.innerText
   const headBranch = headDOM.innerText
+
+  const viewDOM = document.querySelector(`.chrome-ext-pr.${baseBranch}-${headBranch}`)
+  if(viewDOM) return
+
+  const oldDOM = document.querySelector(`.chrome-ext-pr`)
+  if(oldDOM) oldDOM.remove()
 
   const view = renderView(baseBranch, headBranch)
   mergeDOM.insertBefore(view, mergeDOM.firstChild)
