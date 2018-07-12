@@ -1,0 +1,11 @@
+{
+  "name": "GitHub PR merge to",
+  "version": "1",
+  "manifest_version": 2,
+  "description": "GitHub show merge into branch top of merge button",
+  "content_scripts": [{
+    "matches": ["https://github.com/*"],
+    "js": ["script.js"],
+    "run_at": "document_idle"
+  }]
+}
